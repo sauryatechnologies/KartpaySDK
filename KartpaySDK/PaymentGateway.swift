@@ -126,7 +126,7 @@ public func refunds(merchant_id: String, access_key: String, kartpay_id: String,
                 } else {
                     errorMessage = "Error Message: Please check all parameter not be empty"
                 }
-                completion(true, refundsObj, errorMessage)
+                completion(false, refundsObj, errorMessage)
             }
             
         case .failure:
