@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		31225C9C224CAD19004CC5FF /* KartpaySDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 31225C9A224CAD19004CC5FF /* KartpaySDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		31225CA3224CAD89004CC5FF /* PaymentGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31225CA2224CAD89004CC5FF /* PaymentGateway.swift */; };
+		31225CA5224CBCB4004CC5FF /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31225CA4224CBCB4004CC5FF /* Model.swift */; };
 		FEA68F0EB0BE64796778BB6E /* Pods_KartpaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111AB66E445A35F61AE9F9EE /* Pods_KartpaySDK.framework */; };
 /* End PBXBuildFile section */
 
@@ -19,6 +20,7 @@
 		31225C9A224CAD19004CC5FF /* KartpaySDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KartpaySDK.h; sourceTree = "<group>"; };
 		31225C9B224CAD19004CC5FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31225CA2224CAD89004CC5FF /* PaymentGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentGateway.swift; sourceTree = "<group>"; };
+		31225CA4224CBCB4004CC5FF /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		D08961D1997CF0CEA7AAFC48 /* Pods-KartpaySDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KartpaySDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-KartpaySDK/Pods-KartpaySDK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,6 +60,7 @@
 				31225C9A224CAD19004CC5FF /* KartpaySDK.h */,
 				31225C9B224CAD19004CC5FF /* Info.plist */,
 				31225CA2224CAD89004CC5FF /* PaymentGateway.swift */,
+				31225CA4224CBCB4004CC5FF /* Model.swift */,
 			);
 			path = KartpaySDK;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31225CA3224CAD89004CC5FF /* PaymentGateway.swift in Sources */,
+				31225CA5224CBCB4004CC5FF /* Model.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
