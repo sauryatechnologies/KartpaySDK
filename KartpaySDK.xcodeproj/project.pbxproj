@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		31225C9C224CAD19004CC5FF /* KartpaySDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 31225C9A224CAD19004CC5FF /* KartpaySDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		31225CA3224CAD89004CC5FF /* PaymentGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31225CA2224CAD89004CC5FF /* PaymentGateway.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		31225C97224CAD19004CC5FF /* KartpaySDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KartpaySDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31225C9A224CAD19004CC5FF /* KartpaySDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KartpaySDK.h; sourceTree = "<group>"; };
 		31225C9B224CAD19004CC5FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31225CA2224CAD89004CC5FF /* PaymentGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentGateway.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			children = (
 				31225C9A224CAD19004CC5FF /* KartpaySDK.h */,
 				31225C9B224CAD19004CC5FF /* Info.plist */,
+				31225CA2224CAD89004CC5FF /* PaymentGateway.swift */,
 			);
 			path = KartpaySDK;
 			sourceTree = "<group>";
@@ -95,6 +98,7 @@
 				TargetAttributes = {
 					31225C96224CAD19004CC5FF = {
 						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -130,6 +134,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31225CA3224CAD89004CC5FF /* PaymentGateway.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +266,7 @@
 		31225CA0224CAD19004CC5FF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -277,6 +283,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = sabyCom.KartpaySDK;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -285,6 +292,7 @@
 		31225CA1224CAD19004CC5FF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
