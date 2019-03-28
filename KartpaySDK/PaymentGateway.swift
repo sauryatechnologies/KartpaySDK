@@ -51,13 +51,13 @@ public func makePayment(merchant_id : String, access_key: String, currency: Stri
             }
             
         case .failure(let error):
-            completion(false, error.localizedDescription, "API Response failure")
+            completion(false, error.localizedDescription, "API Response Failure: Contact Kartpay Support")
         }
     }
 }
 
 
-public func transactionStatus(merchant_id: String, access_key: String, order_id: String, hash: String, completion: @escaping (Bool, TransactionStatus) -> Void) {
+public func transactionStatus(merchant_id: String, access_key: String, order_id: String, hash: String, completion: @escaping (Bool, TransactionStatus, String) -> Void) {
     
     let url = "https://live.kartpay.me/api/v1/txn_status" + "?merchant_id=\(merchant_id)" + "&access_key=\(access_key)" + "&order_id=\(order_id)" + "&hash=\(hash)"
     var transactionStatusR = TransactionStatus(kartpayId: 0, orderId: "", orderAmount: "", status: "", hash: "")
@@ -68,16 +68,30 @@ public func transactionStatus(merchant_id: String, access_key: String, order_id:
             guard let responseObj = response.result.value as? [String: Any] else {
                 return
             }
-            let kartpayID = responseObj["kartpay_id"] as? Int
-            let orderID = responseObj["order_id"] as? String
-            let orderAmt = responseObj["order_amount"] as? String
-            let status = responseObj["status"] as? String
-            let hash = responseObj["hash"] as? String
             
-            transactionStatusR = TransactionStatus(kartpayId: kartpayID!, orderId: orderID!, orderAmount: orderAmt!, status: status!, hash: hash!)
-            completion(true, transactionStatusR)
+            var errorMessage = ""
+            let error = responseObj["errors"] as? [String: Any]
+            if error == nil {
+                let kartpayID = responseObj["kartpay_id"] as? Int
+                let orderID = responseObj["order_id"] as? String
+                let orderAmt = responseObj["order_amount"] as? String
+                let status = responseObj["status"] as? String
+                let hash = responseObj["hash"] as? String
+                transactionStatusR = TransactionStatus(kartpayId: kartpayID!, orderId: orderID!, orderAmount: orderAmt!, status: status!, hash: hash!)
+                completion(true, transactionStatusR, "")
+            } else {
+                if let message = error!["400"] as? String {
+                    errorMessage = message
+                } else if let message1 = error!["301"] as? String {
+                    errorMessage = message1
+                } else {
+                    errorMessage = "Error Message: Please check all parameter not be empty"
+                }
+                completion(false, transactionStatusR, errorMessage)
+            }
+            
         case .failure:
-            completion(false, transactionStatusR)
+            completion(false, transactionStatusR, "API Response Failure: Contact Kartpay Support")
         }
     }
     
