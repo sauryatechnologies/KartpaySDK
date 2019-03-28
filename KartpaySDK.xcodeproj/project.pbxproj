@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		31225C9C224CAD19004CC5FF /* KartpaySDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 31225C9A224CAD19004CC5FF /* KartpaySDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		31225CA3224CAD89004CC5FF /* PaymentGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31225CA2224CAD89004CC5FF /* PaymentGateway.swift */; };
+		FEA68F0EB0BE64796778BB6E /* Pods_KartpaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111AB66E445A35F61AE9F9EE /* Pods_KartpaySDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		111AB66E445A35F61AE9F9EE /* Pods_KartpaySDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KartpaySDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B1A392291ECF250B4AEB67A /* Pods-KartpaySDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KartpaySDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KartpaySDK/Pods-KartpaySDK.debug.xcconfig"; sourceTree = "<group>"; };
 		31225C97224CAD19004CC5FF /* KartpaySDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KartpaySDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31225C9A224CAD19004CC5FF /* KartpaySDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KartpaySDK.h; sourceTree = "<group>"; };
 		31225C9B224CAD19004CC5FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31225CA2224CAD89004CC5FF /* PaymentGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentGateway.swift; sourceTree = "<group>"; };
+		D08961D1997CF0CEA7AAFC48 /* Pods-KartpaySDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KartpaySDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-KartpaySDK/Pods-KartpaySDK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEA68F0EB0BE64796778BB6E /* Pods_KartpaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -34,6 +39,8 @@
 			children = (
 				31225C99224CAD19004CC5FF /* KartpaySDK */,
 				31225C98224CAD19004CC5FF /* Products */,
+				CDBF9A1684FF1AAED7DF81C6 /* Pods */,
+				C6CDFA2AAADA600A7039A20F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,6 +62,23 @@
 			path = KartpaySDK;
 			sourceTree = "<group>";
 		};
+		C6CDFA2AAADA600A7039A20F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				111AB66E445A35F61AE9F9EE /* Pods_KartpaySDK.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CDBF9A1684FF1AAED7DF81C6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2B1A392291ECF250B4AEB67A /* Pods-KartpaySDK.debug.xcconfig */,
+				D08961D1997CF0CEA7AAFC48 /* Pods-KartpaySDK.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -73,6 +97,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 31225C9F224CAD19004CC5FF /* Build configuration list for PBXNativeTarget "KartpaySDK" */;
 			buildPhases = (
+				C734BBDA007F01009B3AF5C3 /* [CP] Check Pods Manifest.lock */,
 				31225C92224CAD19004CC5FF /* Headers */,
 				31225C93224CAD19004CC5FF /* Sources */,
 				31225C94224CAD19004CC5FF /* Frameworks */,
@@ -128,6 +153,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C734BBDA007F01009B3AF5C3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KartpaySDK-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		31225C93224CAD19004CC5FF /* Sources */ = {
@@ -265,6 +315,7 @@
 		};
 		31225CA0224CAD19004CC5FF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B1A392291ECF250B4AEB67A /* Pods-KartpaySDK.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -291,6 +342,7 @@
 		};
 		31225CA1224CAD19004CC5FF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D08961D1997CF0CEA7AAFC48 /* Pods-KartpaySDK.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
