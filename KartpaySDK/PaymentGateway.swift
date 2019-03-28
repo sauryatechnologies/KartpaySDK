@@ -42,7 +42,7 @@ public func makePayment(merchant_id : String, access_key: String, currency: Stri
                 } else if let message5 = error!["307"] as? String {
                     errorMessage = message5
                 } else {
-                    errorMessage = "Error : Please check all parameter not be empty"
+                    errorMessage = "Error Message: Please check all parameter not be empty"
                 }
                 completion(false, url ?? "", errorMessage)
             } else {
@@ -51,7 +51,7 @@ public func makePayment(merchant_id : String, access_key: String, currency: Stri
             }
             
         case .failure(let error):
-            completion(false, error.localizedDescription, "API Response Failure: Contact Kartpay Support")
+            completion(false, error.localizedDescription, "Response Failure: Contact Kartpay Support")
         }
     }
 }
@@ -91,7 +91,7 @@ public func transactionStatus(merchant_id: String, access_key: String, order_id:
             }
             
         case .failure:
-            completion(false, transactionStatusR, "API Response Failure: Contact Kartpay Support")
+            completion(false, transactionStatusR, "Response Failure: Contact Kartpay Support")
         }
     }
     
@@ -130,13 +130,13 @@ public func refunds(merchant_id: String, access_key: String, kartpay_id: String,
             }
             
         case .failure:
-            completion(false, refundsObj, "API Response Failure: Contact Kartpay Support")
+            completion(false, refundsObj, "Response Failure: Contact Kartpay Support")
         }
     }
 }
 
 
-public func refundStatus(merchant_id: String, access_key: String, order_id: String, orderAmount: String, hash: String, completion: @escaping (Bool, RefundStatus) -> Void) {
+public func refundStatus(merchant_id: String, access_key: String, order_id: String, orderAmount: String, hash: String, completion: @escaping (Bool, RefundStatus, String) -> Void) {
     
     let url = "https://live.kartpay.me/api/v1/refund_status" + "?merchant_id=\(merchant_id)" + "&access_key=\(access_key)" + "&order_id=\(order_id)" + "&order_amount=\(orderAmount)" + "&hash=\(hash)"
     var refundStaObj = RefundStatus(kartpayId: 0, requestId: 0, status: "", reason: "")
@@ -147,15 +147,27 @@ public func refundStatus(merchant_id: String, access_key: String, order_id: Stri
             guard let responseObj = response.result.value as? [String: Any] else {
                 return
             }
-            let reqid = responseObj["request_id"] as? Int
-            let kartpayid = responseObj["kartpay_id"] as? Int
-            let reason = responseObj["reason"] as? String
-            let status = responseObj["status"] as? String
+            var errorMessage = ""
+            let error = responseObj["errors"] as? [String: Any]
+            if error == nil {
+                let reqid = responseObj["request_id"] as? Int
+                let kartpayid = responseObj["kartpay_id"] as? Int
+                let reason = responseObj["reason"] as? String
+                let status = responseObj["status"] as? String
+                
+                refundStaObj = RefundStatus(kartpayId: kartpayid!, requestId: reqid!, status: status!, reason: reason)
+                completion(true, refundStaObj, "")
+            } else {
+                if let message = error!["401"] as? String {
+                    errorMessage = message
+                } else {
+                    errorMessage = "Error Message: Please check all parameter not be empty"
+                }
+               completion(false, refundStaObj, errorMessage)
+            }
             
-            refundStaObj = RefundStatus(kartpayId: kartpayid!, requestId: reqid!, status: status!, reason: reason)
-            completion(true, refundStaObj)
         case .failure:
-            completion(false, refundStaObj)
+            completion(false, refundStaObj, "Response Failure: Contact Kartpay Support")
         }
     }
 }
