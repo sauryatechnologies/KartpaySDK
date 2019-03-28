@@ -12,7 +12,7 @@ import Alamofire
 
 let header = ["Content-Type": "application/json"]
 
-public func makePayment(merchant_id : String, access_key: String, currency: String, order_id: String, order_amount: String, customer_email: String, customer_phone: String, hash: String, language: String, completion: @escaping (Bool, String) -> Void) {
+public func makePayment(merchant_id : String, access_key: String, currency: String, order_id: String, order_amount: String, customer_email: String, customer_phone: String, hash: String, language: String, completion: @escaping (Bool, String, String) -> Void) {
     
     let url = "https://live.kartpay.me/api/v1/payments"
     let succFailUrl = "https://live.kartpay.me/api/v1/sdk_app_result"
@@ -24,11 +24,34 @@ public func makePayment(merchant_id : String, access_key: String, currency: Stri
             guard let responseObj = response.result.value as? [String: Any] else {
                 return
             }
-            let paymentUrl = (responseObj["url"] as? String)!
-            completion(true, paymentUrl)
+            
+            var errorMessage = ""
+            let url = responseObj["url"] as? String
+            if url == nil {
+                let error = responseObj["errors"] as? [String: Any]
+                if let message = error!["401"] as? String {
+                    errorMessage = message
+                } else if let message1 = error!["400"] as? String {
+                    errorMessage = message1
+                } else if let message2 = error!["301"] as? String {
+                    errorMessage = message2
+                } else if let message3 = error!["303"] as? String {
+                    errorMessage = message3
+                } else if let message4 = error!["305"] as? String {
+                    errorMessage = message4
+                } else if let message5 = error!["307"] as? String {
+                    errorMessage = message5
+                } else {
+                    errorMessage = "Error : Please check all parameter not be empty"
+                }
+                completion(false, url ?? "", errorMessage)
+            } else {
+                let paymentUrl = url
+                completion(true, paymentUrl!, errorMessage)
+            }
             
         case .failure(let error):
-            completion(false, error.localizedDescription)
+            completion(false, error.localizedDescription, "API Response failure")
         }
     }
 }
