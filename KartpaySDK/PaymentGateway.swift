@@ -12,11 +12,11 @@ import Alamofire
 
 let header = ["Content-Type": "application/json"]
 
-public func makePayment(merchant_id : String, access_key: String, currency: String, order_id: String, order_amount: String, customer_email: String, customer_phone: String, hash: String, language: String, completion: @escaping (Bool, String, String) -> Void) {
+public func transactionRequest(merchant_id : String, access_key: String, currency: String, order_id: String, order_amount: String, customer_email: String, customer_phone: String, billing_name: String, billing_Address: String, billing_city: String, billing_state: String, billing_zip: String, billing_phone: String, billimg_email: String, shipping_name: String, shipping_Address: String, shipping_city: String, shipping_state: String, shipping_zip: String, shipping_phone: String, shipping_email: String, hash: String, language: String,  completion: @escaping (Bool, String, String) -> Void) {
     
     let url = "https://live.kartpay.me/api/v1/payments"
     let succFailUrl = "https://live.kartpay.me/api/v1/sdk_app_result"
-    let parameter  = ["merchant_id": merchant_id, "access_key": access_key, "currency": currency, "order_id": order_id, "order_amount": order_amount, "customer_email": customer_email, "customer_phone": customer_phone, "success_url": succFailUrl, "failed_url": succFailUrl, "api_option": "hosted", "hash": hash, "language": language] as [String : Any]
+    let parameter  = ["merchant_id": merchant_id, "access_key": access_key, "currency": currency, "order_id": order_id, "order_amount": order_amount, "customer_email": customer_email, "customer_phone": customer_phone, "success_url": succFailUrl, "failed_url": succFailUrl, "api_option": "hosted", "billing_name": billing_name, "billing_address": billing_Address, "billing_city": billing_city, "billing_state": billing_state, "billing_zip": billing_zip, "billing_phone": billing_phone, "billing_email": billimg_email, "shipping_name": shipping_name, "shipping_address": shipping_Address, "shipping_city": shipping_city, "shipping_state": shipping_state, "shipping_zip": shipping_zip, "shipping_phone": shipping_phone, "shipping_email": shipping_email, "hash": hash, "language": language] as [String : Any]
     
     Alamofire.request(url, method: .post, parameters: parameter, encoding: JSONEncoding.default, headers: header).responseJSON { (response) in
         switch response.result {
@@ -98,7 +98,7 @@ public func transactionStatus(merchant_id: String, access_key: String, order_id:
 }
 
 
-public func refunds(merchant_id: String, access_key: String, kartpay_id: String, order_id: String, refund_amount: String, reason: String, hash: String, completion: @escaping (Bool, Refunds, String) -> Void) {
+public func refundRequest(merchant_id: String, access_key: String, kartpay_id: String, order_id: String, refund_amount: String, reason: String, hash: String, completion: @escaping (Bool, Refunds, String) -> Void) {
     
     let url = "https://live.kartpay.me/api/v1/refunds"
     let parameter = ["merchant_id": merchant_id, "access_key": access_key, "kartpay_id": kartpay_id, "order_id": order_id, "refund_amount": refund_amount, "reason" : reason,"hash": hash]
