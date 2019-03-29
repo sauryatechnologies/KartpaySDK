@@ -42,7 +42,7 @@ public func makePayment(merchant_id : String, access_key: String, currency: Stri
                 } else if let message5 = error!["307"] as? String {
                     errorMessage = message5
                 } else {
-                    errorMessage = "Error Message: Please check all parameter not be empty"
+                    errorMessage = "Alert message : All parameters are compulsary"
                 }
                 completion(false, url ?? "", errorMessage)
             } else {
@@ -51,7 +51,7 @@ public func makePayment(merchant_id : String, access_key: String, currency: Stri
             }
             
         case .failure(let error):
-            completion(false, error.localizedDescription, "Response Failure: Contact Kartpay Support")
+            completion(false, error.localizedDescription, "Server timeout error if u still face this issue again and again please notify at help@Kartpay.com")
         }
     }
 }
@@ -85,13 +85,13 @@ public func transactionStatus(merchant_id: String, access_key: String, order_id:
                 } else if let message1 = error!["301"] as? String {
                     errorMessage = message1
                 } else {
-                    errorMessage = "Error Message: Please check all parameter not be empty"
+                    errorMessage = "Alert message : All parameters are compulsary"
                 }
                 completion(false, transactionStatusR, errorMessage)
             }
             
         case .failure:
-            completion(false, transactionStatusR, "Response Failure: Contact Kartpay Support")
+            completion(false, transactionStatusR, "Server timeout error if u still face this issue again and again please notify at help@Kartpay.com")
         }
     }
     
@@ -124,13 +124,13 @@ public func refunds(merchant_id: String, access_key: String, kartpay_id: String,
                 if let message = error!["401"] as? String {
                     errorMessage = message
                 } else {
-                    errorMessage = "Error Message: Please check all parameter not be empty"
+                    errorMessage = "Alert message : All parameters are compulsary"
                 }
                 completion(false, refundsObj, errorMessage)
             }
             
         case .failure:
-            completion(false, refundsObj, "Response Failure: Contact Kartpay Support")
+            completion(false, refundsObj, "Server timeout error if u still face this issue again and again please notify at help@Kartpay.com")
         }
     }
 }
@@ -161,13 +161,13 @@ public func refundStatus(merchant_id: String, access_key: String, order_id: Stri
                 if let message = error!["401"] as? String {
                     errorMessage = message
                 } else {
-                    errorMessage = "Error Message: Please check all parameter not be empty"
+                    errorMessage = "Alert message : All parameters are compulsary"
                 }
                completion(false, refundStaObj, errorMessage)
             }
             
         case .failure:
-            completion(false, refundStaObj, "Response Failure: Contact Kartpay Support")
+            completion(false, refundStaObj, "Server timeout error if u still face this issue again and again please notify at help@Kartpay.com")
         }
     }
 }
