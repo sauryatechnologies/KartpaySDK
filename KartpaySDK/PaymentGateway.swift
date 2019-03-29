@@ -16,7 +16,7 @@ public func transactionRequest(merchant_id : String, access_key: String, currenc
     
     let url = "https://live.kartpay.me/api/v1/payments"
     let succFailUrl = "https://live.kartpay.me/api/v1/sdk_app_result"
-    var parameter  = ["merchant_id": merchant_id, "access_key": access_key, "currency": currency, "order_id": order_id, "order_amount": order_amount, "customer_email": customer_email, "customer_phone": customer_phone, "success_url": succFailUrl, "failed_url": succFailUrl, "api_option": "hosted", "billing_name": billing_name, "billing_address": billing_Address, "billing_city": billing_city, "billing_state": billing_state, "billing_zip": billing_zip, "billing_phone": billing_phone, "billing_email": billimg_email, "shipping_name": shipping_name, "shipping_address": shipping_Address, "shipping_city": shipping_city, "shipping_state": shipping_state, "shipping_zip": shipping_zip, "shipping_phone": shipping_phone, "shipping_email": shipping_email, "hash": hash, "language": language] as [String : Any]
+    var parameter  = ["merchant_id": merchant_id, "access_key": access_key, "currency": currency, "order_id": order_id, "order_amount": order_amount, "customer_email": customer_email, "customer_phone": customer_phone, "success_url": succFailUrl, "failed_url": succFailUrl, "api_option": "hosted", "hash": hash, "language": language] as [String : Any]
     
     let billingDic = [ "billing_name": billing_name, "billing_address": billing_Address, "billing_city": billing_city, "billing_state": billing_state, "billing_zip": billing_zip, "billing_phone": billing_phone, "billing_email": billimg_email ]
     
